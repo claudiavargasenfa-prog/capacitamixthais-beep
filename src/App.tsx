@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 
 type Business = 'all' | 'lapas' | 'mercadinho'
-type Page = 'inicio' | 'vendas' | 'estoque' | 'compras' | 'caixa' | 'fiado' | 'resultados' | 'config'
+type Page = 'inicio' | 'vendas' | 'estoque' | 'compras' | 'caixa' | 'fiado' | 'resultados' | 'inteligencia' | 'config'
 type Product = { id:number; business:'lapas'|'mercadinho'; name:string; category:string; unit:string; cost:number; price:number; stock:number; minStock:number; active:boolean }
 type Sale = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; payment:'PIX'|'Dinheiro'|'Cartão'|'Fiado'; date:string }
 type Purchase = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; supplier:string; date:string }
-type Customer = { id:number; name:string; phone:string; balance:number }
+type Customer = { id:number; name:string; phone:string; address:string; reference:string; balance:number }\ntype ClientRequest = { id:number; name:string; customer:string; date:string; status:'pendente'|'avaliar'|'não trabalhar' }
 
 const initialProducts:Product[] = [
 {id:1,business:'lapas',name:'X-Burger',category:'Lanches',unit:'un',cost:7.2,price:18,stock:22,minStock:8,active:true},
@@ -36,9 +36,9 @@ const[page,setPage]=useState<Page>('inicio'),[business,setBusiness]=useState<Bus
 const[products,setProducts]=useState<Product[]>(()=>load('mn-products',initialProducts))
 const[sales,setSales]=useState<Sale[]>(()=>load('mn-sales',initialSales))
 const[purchases,setPurchases]=useState<Purchase[]>(()=>load('mn-purchases',[]))
-const[customers,setCustomers]=useState<Customer[]>(()=>load('mn-customers',[{id:1,name:'Cliente exemplo',phone:'',balance:35}]))
+const[customers,setCustomers]=useState<Customer[]>(()=>load('mn-customers',[]))\nconst[requests,setRequests]=useState<ClientRequest[]>(()=>load('mn-requests',[]))\nconst[places,setPlaces]=useState<string[]>(()=>load('mn-places',['Atacadão','Assaí','Mercado do bairro']))
 const[toast,setToast]=useState(''),[search,setSearch]=useState('')
-useEffect(()=>save('mn-products',products),[products]);useEffect(()=>save('mn-sales',sales),[sales]);useEffect(()=>save('mn-purchases',purchases),[purchases]);useEffect(()=>save('mn-customers',customers),[customers])
+useEffect(()=>save('mn-products',products),[products]);useEffect(()=>save('mn-sales',sales),[sales]);useEffect(()=>save('mn-purchases',purchases),[purchases]);useEffect(()=>save('mn-customers',customers),[customers]);useEffect(()=>save('mn-requests',requests),[requests]);useEffect(()=>save('mn-places',places),[places])
 const visibleProducts=products.filter(p=>p.active&&(business==='all'||p.business===business))
 const visibleSales=sales.filter(s=>business==='all'||s.business===business),visiblePurchases=purchases.filter(p=>business==='all'||p.business===business)
 const revenue=visibleSales.reduce((a,s)=>a+s.total,0),purchaseTotal=visiblePurchases.reduce((a,p)=>a+p.total,0),lowStock=visibleProducts.filter(p=>p.stock<=p.minStock),openFiado=customers.reduce((a,c)=>a+c.balance,0)
@@ -57,7 +57,7 @@ return <div className="app">
 <button className={page==='compras'?'nav active':'nav'} onClick={()=>setPage('compras')}>🚚 <span>Compras</span></button>
 <button className={page==='caixa'?'nav active':'nav'} onClick={()=>setPage('caixa')}>💰 <span>Caixa</span></button>
 <button className={page==='fiado'?'nav active':'nav'} onClick={()=>setPage('fiado')}>👤 <span>Fiado</span>{openFiado>0&&<b className="badge warn">!</b>}</button>
-<div className="nav-label">Acompanhar</div><button className={page==='resultados'?'nav active':'nav'} onClick={()=>setPage('resultados')}>📊 <span>Meu resultado</span></button><button className={page==='config'?'nav active':'nav'} onClick={()=>setPage('config')}>⚙️ <span>Configurações</span></button>
+<div className="nav-label">Acompanhar</div><button className={page==='resultados'?'nav active':'nav'} onClick={()=>setPage('resultados')}>📊 <span>Meu resultado</span></button><button className={page==='inteligencia'?'nav active':'nav'} onClick={()=>setPage('inteligencia')}>🧠 <span>Inteligência</span></button><button className={page==='config'?'nav active':'nav'} onClick={()=>setPage('config')}>⚙️ <span>Configurações</span></button>
 <div className="sidebar-help"><strong>Precisa de ajuda?</strong><span>O sistema foi feito para você não precisar entender de contabilidade para saber como o negócio está.</span></div>
 </aside><main className="main">
 {page==='inicio'&&<Dashboard business={business} revenue={revenue} estimatedGross={estimatedGross} purchaseTotal={purchaseTotal} lowStock={lowStock} sales={visibleSales} products={visibleProducts} setPage={setPage} setBusiness={setBusiness} createWhatsApp={createWhatsApp}/>}
@@ -66,7 +66,7 @@ return <div className="app">
 {page==='compras'&&<PurchasesPage products={visibleProducts} purchases={visiblePurchases} onPurchase={addPurchase}/>}
 {page==='caixa'&&<CashPage sales={visibleSales} purchases={visiblePurchases}/>}
 {page==='fiado'&&<CreditPage customers={customers} setCustomers={setCustomers}/>}
-{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}
+{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}\n{page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces}/>}
 {page==='config'&&<SettingsPage onReset={resetDemo} createWhatsApp={createWhatsApp}/>}
 </main></div>{toast&&<div className="toast">✓ {toast}</div>}</div>
 }
