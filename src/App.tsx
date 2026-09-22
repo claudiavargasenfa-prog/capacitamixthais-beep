@@ -114,7 +114,7 @@ function SettingsPage({onReset,createWhatsApp,creditFeeEnabled,creditFeePercent,
 
 
 
-function IntelligencePage({products,sales,purchases,customers,setCustomers,requests,setRequests,places,setPlaces}:{products:Product[];sales:Sale[];purchases:Purchase[];customers:Customer[];setCustomers:(x:Customer[])=>void;requests:{id:number;name:string;customer:string;date:string;status:'pendente'|'avaliar'|'não trabalhar'}[];setRequests:(x:any[])=>void;places:string[];setPlaces:(x:string[])=>void;setProducts:React.Dispatch<React.SetStateAction<Product[]>>}){
+function IntelligencePage({products,sales,purchases,customers,setCustomers,requests,setRequests,places,setPlaces,setProducts}:{products:Product[];sales:Sale[];purchases:Purchase[];customers:Customer[];setCustomers:(x:Customer[])=>void;requests:{id:number;name:string;customer:string;date:string;status:'pendente'|'avaliar'|'não trabalhar'}[];setRequests:(x:any[])=>void;places:string[];setPlaces:(x:string[])=>void;setProducts:React.Dispatch<React.SetStateAction<Product[]>>}){
 const [tab,setTab]=useState<'estoque'|'compras'|'clientes'|'pedidos'|'datas'>('estoque')
 const now=Date.now()
 const last7=sales.filter(s=>now-new Date(s.date).getTime()<=7*86400000)
