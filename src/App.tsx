@@ -5,7 +5,8 @@ type Page = 'inicio' | 'vendas' | 'estoque' | 'compras' | 'caixa' | 'fiado' | 'r
 type Product = { id:number; business:'lapas'|'mercadinho'; name:string; category:string; unit:string; cost:number; price:number; stock:number; minStock:number; active:boolean }
 type Sale = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; payment:'PIX'|'Dinheiro'|'Cartão'|'Fiado'; date:string }
 type Purchase = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; supplier:string; date:string }
-type Customer = { id:number; name:string; phone:string; address:string; reference:string; balance:number }\ntype ClientRequest = { id:number; name:string; customer:string; date:string; status:'pendente'|'avaliar'|'não trabalhar' }
+type Customer = { id:number; name:string; phone:string; address:string; reference:string; balance:number }
+type ClientRequest = { id:number; name:string; customer:string; date:string; status:'pendente'|'avaliar'|'não trabalhar' }
 
 const initialProducts:Product[] = [
 {id:1,business:'lapas',name:'X-Burger',category:'Lanches',unit:'un',cost:7.2,price:18,stock:22,minStock:8,active:true},
@@ -36,7 +37,9 @@ const[page,setPage]=useState<Page>('inicio'),[business,setBusiness]=useState<Bus
 const[products,setProducts]=useState<Product[]>(()=>load('mn-products',initialProducts))
 const[sales,setSales]=useState<Sale[]>(()=>load('mn-sales',initialSales))
 const[purchases,setPurchases]=useState<Purchase[]>(()=>load('mn-purchases',[]))
-const[customers,setCustomers]=useState<Customer[]>(()=>load('mn-customers',[]))\nconst[requests,setRequests]=useState<ClientRequest[]>(()=>load('mn-requests',[]))\nconst[places,setPlaces]=useState<string[]>(()=>load('mn-places',['Atacadão','Assaí','Mercado do bairro']))
+const[customers,setCustomers]=useState<Customer[]>(()=>load('mn-customers',[]))
+const[requests,setRequests]=useState<ClientRequest[]>(()=>load('mn-requests',[]))
+const[places,setPlaces]=useState<string[]>(()=>load('mn-places',['Atacadão','Assaí','Mercado do bairro']))
 const[toast,setToast]=useState(''),[search,setSearch]=useState('')
 useEffect(()=>save('mn-products',products),[products]);useEffect(()=>save('mn-sales',sales),[sales]);useEffect(()=>save('mn-purchases',purchases),[purchases]);useEffect(()=>save('mn-customers',customers),[customers]);useEffect(()=>save('mn-requests',requests),[requests]);useEffect(()=>save('mn-places',places),[places])
 const visibleProducts=products.filter(p=>p.active&&(business==='all'||p.business===business))
@@ -66,7 +69,8 @@ return <div className="app">
 {page==='compras'&&<PurchasesPage products={visibleProducts} purchases={visiblePurchases} onPurchase={addPurchase}/>}
 {page==='caixa'&&<CashPage sales={visibleSales} purchases={visiblePurchases}/>}
 {page==='fiado'&&<CreditPage customers={customers} setCustomers={setCustomers}/>}
-{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}\n{page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
+{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}
+{page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
 {page==='config'&&<SettingsPage onReset={resetDemo} createWhatsApp={createWhatsApp}/>}
 </main></div>{toast&&<div className="toast">✓ {toast}</div>}</div>
 }
@@ -175,4 +179,5 @@ const suggest=event==='Natal'?products.filter(p=>/panetone|chocolate|refrigerant
 return <section className="card"><h2>🎁 Datas especiais e sorteios</h2><p className="muted">O sistema sugere somente itens já cadastrados no Mercadinho e disponíveis como ideia de prêmio.</p><div className="form-grid"><select value={event} onChange={e=>{setEvent(e.target.value);setWinner('')}}><option value="">Escolha uma data</option>{events.map(e=><option key={e[0]} value={e[0]}>{e[0]}</option>)}</select><div className="info-note" style={{margin:0}}>{events.find(e=>e[0]===event)?.[1]||'Selecione uma data para ver a sugestão.'}</div></div>
 {event&&<><h3>Sugestões disponíveis</h3>{suggest.map(p=><div className="mini-row" key={p.id}><span>{p.name}</span><strong>{money(p.price)}</strong></div>)}<button className="primary" disabled={!customers.length} onClick={()=>{if(customers.length)setWinner(customers[Math.floor(Math.random()*customers.length)].name)}}>🎉 Sortear entre clientes</button>{winner&&<div className="result-hero" style={{marginTop:15}}><div><span>Cliente sorteado</span><strong>{winner}</strong></div></div>}</>}</section>
 }
-\nexport default App
+
+export default App
