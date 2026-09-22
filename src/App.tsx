@@ -115,18 +115,22 @@ function SettingsPage({onReset,createWhatsApp,creditFeeEnabled,creditFeePercent,
 
 function IntelligencePage({products,sales,purchases,customers,setCustomers,requests,setRequests,places,setPlaces}:{products:Product[];sales:Sale[];purchases:Purchase[];customers:Customer[];setCustomers:(x:Customer[])=>void;requests:{id:number;name:string;customer:string;date:string;status:'pendente'|'avaliar'|'não trabalhar'}[];setRequests:(x:any[])=>void;places:string[];setPlaces:(x:string[])=>void;setProducts:React.Dispatch<React.SetStateAction<Product[]>>}){
 const [tab,setTab]=useState<'estoque'|'compras'|'clientes'|'pedidos'|'datas'>('estoque')
-const counts=sales.reduce<Record<number,number>>((a,s)=>{a[s.productId]=(a[s.productId]||0)+s.quantity;return a},{})
-const suggested=(p:Product)=>Math.max(1,Math.ceil(((counts[p.id]||0)/7)*2))
+const now=Date.now()
+const last7=sales.filter(s=>now-new Date(s.date).getTime()<=7*86400000)
+const last30=sales.filter(s=>now-new Date(s.date).getTime()<=30*86400000)
+const counts=last7.reduce<Record<number,number>>((a,s)=>{a[s.productId]=(a[s.productId]||0)+s.quantity;return a},{})
+const counts30=last30.reduce<Record<number,number>>((a,s)=>{a[s.productId]=(a[s.productId]||0)+s.quantity;return a},{})
+const suggested=(p:Product)=>Math.max(1,Math.ceil(((counts30[p.id]||0)/30)*2))
 return <div>
 <div className="page-head"><div><span className="eyebrow">ASSISTENTE DO NEGÓCIO</span><h1>Inteligência do Mercadinho</h1><p>O sistema analisa vendas e procura para ajudar a Thaís a decidir. Nada é comprado ou alterado automaticamente.</p></div></div>
 <div className="toolbar" style={{display:'flex',gap:8,flexWrap:'wrap'}}>
 {[['estoque','📦 Estoque'],['compras','🚚 Compras e preços'],['clientes','👤 Clientes'],['pedidos','📝 Pedidos'],['datas','🎁 Datas especiais']].map(([k,label])=><button key={k} className={tab===k?'primary':'secondary'} onClick={()=>setTab(k as typeof tab)}>{label}</button>)}
 </div>
 {tab==='estoque'&&<section className="card">
-<h2>⚠️ Estoque mínimo inteligente</h2><p className="muted">O ponto inicial é baseado na média de vendas registrada. A regra usa 2 dias de segurança e pode ser ajustada produto a produto.</p>
-<div className="table-wrap"><table><thead><tr><th>Produto</th><th>Vendidos</th><th>Média/dia</th><th>Estoque atual</th><th>Mínimo sugerido</th><th>Sinal</th></tr></thead><tbody>
+<h2>⚠️ Estoque mínimo inteligente</h2><p className="muted">O sistema usa o histórico recente para sugerir um mínimo com 2 dias de segurança. A sugestão pode ser ajustada produto a produto.</p>
+<div className="table-wrap"><table><thead><tr><th>Produto</th><th>Vendidos (7 dias)</th><th>Média/dia</th><th>Estoque atual</th><th>Mínimo sugerido</th><th>Sinal</th></tr></thead><tbody>
 {products.map(p=>{const sold=counts[p.id]||0,min=suggested(p);return <tr key={p.id}><td><strong>{p.name}</strong><small>{p.business==='lapas'?'Lapas Burguer':'Mercadinho'}</small></td><td>{sold}</td><td>{(sold/7).toFixed(1)}</td><td>{p.stock}</td><td><strong>{min}</strong></td><td>{p.stock<=min?<span className="status danger">Comprar</span>:<span className="status ok">Normal</span>}</td></tr>})}</tbody></table></div>
-<div className="info-note">💡 Exemplo: se vendeu em média 4 unidades por dia, 2 dias de segurança indicam 8 unidades. Com mais histórico, essa sugestão fica mais precisa.</div>
+<div className="info-note">💡 O ranking semanal considera os últimos 7 dias reais. O estoque mínimo usa até 30 dias de histórico para não reagir demais a uma semana atípica.</div>
 </section>}
 {tab==='compras'&&<PurchaseIntelligence products={products} purchases={purchases} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
 {tab==='clientes'&&<CustomerIntelligence customers={customers} setCustomers={setCustomers}/>}
