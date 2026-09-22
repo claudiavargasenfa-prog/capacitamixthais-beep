@@ -66,7 +66,7 @@ return <div className="app">
 {page==='compras'&&<PurchasesPage products={visibleProducts} purchases={visiblePurchases} onPurchase={addPurchase}/>}
 {page==='caixa'&&<CashPage sales={visibleSales} purchases={visiblePurchases}/>}
 {page==='fiado'&&<CreditPage customers={customers} setCustomers={setCustomers}/>}
-{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}\n{page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces}/>}
+{page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}\n{page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
 {page==='config'&&<SettingsPage onReset={resetDemo} createWhatsApp={createWhatsApp}/>}
 </main></div>{toast&&<div className="toast">✓ {toast}</div>}</div>
 }
@@ -107,7 +107,7 @@ function SettingsPage({onReset,createWhatsApp}:{onReset:()=>void;createWhatsApp:
 
 
 
-function IntelligencePage({products,sales,purchases,customers,setCustomers,requests,setRequests,places,setPlaces}:{products:Product[];sales:Sale[];purchases:Purchase[];customers:Customer[];setCustomers:(x:Customer[])=>void;requests:{id:number;name:string;customer:string;date:string;status:'pendente'|'avaliar'|'não trabalhar'}[];setRequests:(x:any[])=>void;places:string[];setPlaces:(x:string[])=>void}){
+function IntelligencePage({products,sales,purchases,customers,setCustomers,requests,setRequests,places,setPlaces}:{products:Product[];sales:Sale[];purchases:Purchase[];customers:Customer[];setCustomers:(x:Customer[])=>void;requests:{id:number;name:string;customer:string;date:string;status:'pendente'|'avaliar'|'não trabalhar'}[];setRequests:(x:any[])=>void;places:string[];setPlaces:(x:string[])=>void;setProducts:React.Dispatch<React.SetStateAction<Product[]>>}){
 const [tab,setTab]=useState<'estoque'|'compras'|'clientes'|'pedidos'|'datas'>('estoque')
 const counts=sales.reduce<Record<number,number>>((a,s)=>{a[s.productId]=(a[s.productId]||0)+s.quantity;return a},{})
 const suggested=(p:Product)=>Math.max(1,Math.ceil(((counts[p.id]||0)/7)*2))
@@ -122,14 +122,14 @@ return <div>
 {products.map(p=>{const sold=counts[p.id]||0,min=suggested(p);return <tr key={p.id}><td><strong>{p.name}</strong><small>{p.business==='lapas'?'Lapas Burguer':'Mercadinho'}</small></td><td>{sold}</td><td>{(sold/7).toFixed(1)}</td><td>{p.stock}</td><td><strong>{min}</strong></td><td>{p.stock<=min?<span className="status danger">Comprar</span>:<span className="status ok">Normal</span>}</td></tr>})}</tbody></table></div>
 <div className="info-note">💡 Exemplo: se vendeu em média 4 unidades por dia, 2 dias de segurança indicam 8 unidades. Com mais histórico, essa sugestão fica mais precisa.</div>
 </section>}
-{tab==='compras'&&<PurchaseIntelligence products={products} purchases={purchases} places={places} setPlaces={setPlaces}/>}
+{tab==='compras'&&<PurchaseIntelligence products={products} purchases={purchases} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
 {tab==='clientes'&&<CustomerIntelligence customers={customers} setCustomers={setCustomers}/>}
 {tab==='pedidos'&&<RequestIntelligence requests={requests} setRequests={setRequests}/>}
 {tab==='datas'&&<SpecialIntelligence customers={customers} products={products.filter(p=>p.business==='mercadinho')}/>}
 </div>
 }
 
-function PurchaseIntelligence({products,purchases,places,setPlaces}:{products:Product[];purchases:Purchase[];places:string[];setPlaces:(x:string[])=>void}){
+function PurchaseIntelligence({products,purchases,places,setPlaces,setProducts}:{products:Product[];purchases:Purchase[];places:string[];setPlaces:(x:string[])=>void;setProducts:React.Dispatch<React.SetStateAction<Product[]>>}){
 const [id,setId]=useState(products[0]?.id||0),[qty,setQty]=useState(1),[place,setPlace]=useState(places[0]||''),[cost,setCost]=useState(products[0]?.cost||0),[accepted,setAccepted]=useState<number|null>(null),[newPlace,setNewPlace]=useState('')
 const p=products.find(x=>x.id===id);const setProduct=(n:number)=>{setId(n);const x=products.find(p=>p.id===n);if(x)setCost(x.cost)}
 const options=[cost*1.10,cost*1.15,cost*1.20].map(v=>Number(v.toFixed(2)))
@@ -142,7 +142,7 @@ return <div className="grid-2">
 <div className="form-grid"><input placeholder="Novo local de compra" value={newPlace} onChange={e=>setNewPlace(e.target.value)}/><button className="secondary" onClick={()=>{if(newPlace.trim()){setPlaces([...places,newPlace.trim()]);setPlace(newPlace.trim());setNewPlace('')}}}>Adicionar local</button></div>
 </section>
 <section className="card"><h2>🏷️ Preço de venda sugerido</h2><p className="muted">Duas opções principais + uma terceira margem. Thaís escolhe, pode alterar e só depois confirma.</p>
-{options.map((v,i)=><button key={v} className={accepted===v?'primary full':'secondary full'} style={{marginBottom:8,textAlign:'left'}} onClick={()=>setAccepted(v)}><strong>{i===0?'Custo + 10%':i===1?'Custo + 15%':'Custo + 20%'}</strong> — {money(v)}</button>)}
+{options.map((v,i)=><button key={v} className={accepted===v?'primary full':'secondary full'} style={{marginBottom:8,textAlign:'left'}} onClick={()=>{setAccepted(v);setProducts(list=>list.map(x=>x.id===id?{...x,price:v,cost}:x))}}><strong>{i===0?'Custo + 10%':i===1?'Custo + 15%':'Custo + 20%'}</strong> — {money(v)}</button>)}
 <div className="total-box"><span>Preço aceito</span><strong>{accepted===null?'Aguardando escolha':money(accepted)}</strong></div>
 <p className="muted">Preço anterior: {money(p?.price||0)} · custo atual: {money(cost)}</p>
 <div className="info-note">✓ O aceite fica registrado na decisão da Thaís. Na próxima etapa, vamos persistir o histórico de preços e aplicar o valor escolhido ao cadastro do produto.</div>
