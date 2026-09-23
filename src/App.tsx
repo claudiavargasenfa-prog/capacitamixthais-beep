@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
 type Business = 'all' | 'lapas' | 'mercadinho'
-type Page = 'inicio' | 'vendas' | 'estoque' | 'compras' | 'caixa' | 'fiado' | 'resultados' | 'inteligencia' | 'sorteios' | 'config'
+type Page = 'inicio' | 'vendas' | 'pedidos' | 'estoque' | 'compras' | 'caixa' | 'fiado' | 'resultados' | 'inteligencia' | 'sorteios' | 'config'
 type Product = { id:number; business:'lapas'|'mercadinho'; name:string; type:string; size:string; category:string; unit:string; temperature?:'Gelada'|'Natural'|''; cost:number; price:number; stock:number; minStock:number; active:boolean; description?:string }
 type Sale = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; payment:'PIX'|'Dinheiro'|'Cartão'|'Fiado'; date:string; customerId?:number; creditFeePercent?:number; creditFee?:number }
 type Purchase = { id:number; business:'lapas'|'mercadinho'; productId:number; productName:string; quantity:number; total:number; supplier:string; date:string }
@@ -209,7 +209,7 @@ const [events,setEvents]=useState(()=>load('mn-raffle-events',[
 const [winner,setWinner]=useState<string|null>(null);
 const [eventId,setEventId]=useState<number>(1);
 const [newEvent,setNewEvent]=useState('');
-const save=(next:any[])=>{setEvents(next);saveLocal('mn-raffle-events',next)};
+const save=(next:any[])=>{setEvents(next);save('mn-raffle-events',next)};
 const draw=()=>{const eligible=customers.filter(c=>c.name.trim());if(!eligible.length){setWinner('Cadastre clientes antes de realizar um sorteio.');return;}const w=eligible[Math.floor(Math.random()*eligible.length)];setWinner(w.name)};
 const activeEvents=events.filter((e:any)=>e.active);
 const selected=events.find((e:any)=>e.id===eventId);
