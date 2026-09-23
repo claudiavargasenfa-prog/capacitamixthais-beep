@@ -75,13 +75,13 @@ return <div className="app">
 </aside><main className="main">
 {page==='inicio'&&<Dashboard business={business} revenue={revenue} estimatedGross={estimatedGross} purchaseTotal={purchaseTotal} lowStock={lowStock} sales={visibleSales} products={visibleProducts} setPage={setPage} setBusiness={setBusiness} createWhatsApp={createWhatsApp}/>}
 {page==='vendas'&&<SalesPage products={visibleProducts} business={business} onSell={sell} search={search} setSearch={setSearch} sales={visibleSales} customers={customers} creditFeeEnabled={creditFeeEnabled} creditFeePercent={creditFeePercent}/>}
-{page==='estoque'&&<StockPage products={visibleProducts} search={search} setSearch={setSearch} onAdjust={(id,d)=>setProducts(v=>v.map(p=>p.id===id?{...p,stock:Math.max(0,p.stock+d)}:p))}/>}
+{page==='estoque'&&<StockPage products={visibleProducts} search={search} setSearch={setSearch} onAdjust={(id,d)=>setProducts(v=>v.map(p=>p.id===id?{...p,stock:Math.max(0,p.stock+d)}:p))} onSaveProduct={(p)=>{setProducts(v=>v.some(x=>x.id===p.id)?v.map(x=>x.id===p.id?p:x):[...v,p]);notify(p.id?'Produto atualizado.':'Produto cadastrado.')}}/>}
 {page==='compras'&&<PurchasesPage products={visibleProducts} purchases={visiblePurchases} onPurchase={addPurchase}/>}
 {page==='caixa'&&<CashPage sales={visibleSales} purchases={visiblePurchases}/>}
 {page==='fiado'&&<CreditPage customers={customers} setCustomers={setCustomers}/>}
 {page==='resultados'&&<ResultsPage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases}/>}
 {page==='inteligencia'&&<IntelligencePage products={visibleProducts} sales={visibleSales} purchases={visiblePurchases} customers={customers} setCustomers={setCustomers} requests={requests} setRequests={setRequests} places={places} setPlaces={setPlaces} setProducts={setProducts}/>}
-{page==='config'&&<SettingsPage onReset={resetDemo} createWhatsApp={createWhatsApp} creditFeeEnabled={creditFeeEnabled} creditFeePercent={creditFeePercent} setCreditFeeEnabled={setCreditFeeEnabled} setCreditFeePercent={setCreditFeePercent}/>}
+{page==='config'&&<SettingsPage onReset={resetDemo} createWhatsApp={createWhatsApp} creditFeeEnabled={creditFeeEnabled} creditFeePercent={creditFeePercent} setCreditFeeEnabled={setCreditFeeEnabled} setCreditFeePercent={setCreditFeePercent} delivery={delivery} setDelivery={setDelivery} paymentConfig={paymentConfig} setPaymentConfig={setPaymentConfig}/>}
 </main></div>{toast&&<div className="toast">✓ {toast}</div>}</div>
 }
 
