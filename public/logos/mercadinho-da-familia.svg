@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 760">
+<rect width="800" height="760" rx="36" fill="#fbf7e9"/>
+<g transform="translate(105 35)">
+<path d="M95 235 C95 125 160 55 245 55 C330 55 395 125 395 235" fill="none" stroke="#1d5d45" stroke-width="18"/>
+<g transform="translate(85 15)">
+<path d="M75 120h265l-32 145H105z" fill="#fff" stroke="#174f3c" stroke-width="16" stroke-linejoin="round"/>
+<path d="M90 165h240M100 210h210M145 125v120M220 125v120M285 125v120" stroke="#174f3c" stroke-width="14"/>
+<circle cx="135" cy="295" r="25" fill="#174f3c"/><circle cx="290" cy="295" r="25" fill="#174f3c"/>
+<path d="M100 110L55 45" stroke="#174f3c" stroke-width="14"/>
+<g transform="translate(105 0)">
+<path d="M0 75l35-60 45 60" fill="#62a24b"/><path d="M65 80l35-55 40 55" fill="#4e963f"/>
+<path d="M145 75l-25-60 55 0 25 60" fill="#f2b313"/>
+<path d="M195 75l10-65 55 0-5 65" fill="#d92e42"/>
+<path d="M270 75l10-60 55 10-5 50" fill="#2f88bd"/>
+</g></g></g>
+<rect x="35" y="345" width="730" height="125" rx="62" fill="#0b4f3b"/>
+<text x="400" y="430" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="78" font-weight="800" fill="white">Mercadinho</text>
+<text x="400" y="535" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="82" font-weight="800" font-style="italic" fill="#b32025">da Família</text>
+<path d="M235 575 Q400 625 565 575" fill="none" stroke="#0b4f3b" stroke-width="12"/>
+</svg>
