@@ -179,7 +179,6 @@ const [region,setRegion]=useState(delivery.regions[0]?.name||''),[deliveryMode,s
 const [name,setName]=useState(''),[phone,setPhone]=useState(''),[address,setAddress]=useState(''),[reference,setReference]=useState('');
 const [friesOpen,setFriesOpen]=useState(false);
 const allOrderProducts=products.filter(p=>p.business===business&&p.active&&p.stock>0);const items=allOrderProducts.filter(p=>!p.name.startsWith('Batata Frita —'));
-const friesBase=products.find(p=>p.business==='lapas'&&p.name==='Batata Frita');
 const friesOptions=products.filter(p=>p.business==='lapas'&&p.name.startsWith('Batata Frita —')).sort((a,b)=>a.id-b.id);
 const selected=allOrderProducts.filter(p=>cart[p.id]);
 const subtotal=selected.reduce((s,p)=>s+p.price*(cart[p.id]||0),0),regionFee=delivery.regions.find(r=>r.name===region)?.fee??delivery.defaultFee;

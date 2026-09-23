@@ -38,4 +38,4 @@
 .fries-option-action b{font-size:14px}
 .fries-option-action button:disabled{opacity:.45;cursor:not-allowed}
 .store-product-img.photo{background-color:#eee}
-textarea{font:inherit;resize:vertical;min-height:90px}
+textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;margin-top:6px;border:1px solid #dfe4ec;border-radius:9px;padding:10px 11px;background:#fff;outline:none}
