@@ -18,3 +18,24 @@
 .message-card h3{margin:0 0 12px;font-size:19px;color:#26352e}
 .message-text{white-space:pre-line;line-height:1.6;font-size:14px;color:#4b554f;min-height:250px;margin-bottom:16px}
 .message-card .full{width:100%}
+
+.store-product-img.photo{background-image:url("./produtos/lapas/lapas-menu-sprite.jpg");background-repeat:no-repeat;background-size:300px 1054px;background-color:#f0f2f6;background-position:center 0;background-origin:border-box}
+.store-product-img.photo{height:210px;background-size:300px 1054px}
+.store-product-img.photo.fries-modal-photo{height:190px;border-radius:14px}
+.store-description{font-size:12px!important;line-height:1.45;color:#626b79!important;margin:6px 0!important;min-height:52px}
+.store-product>div:nth-child(2){display:flex;flex-direction:column}
+.store-product>div:nth-child(2) small{margin-top:auto}
+.store-modal-backdrop{position:fixed;inset:0;background:#11182799;z-index:100;display:grid;place-items:center;padding:18px}
+.store-modal{position:relative;background:#fff;border-radius:20px;max-width:620px;width:100%;max-height:90vh;overflow:auto;padding:22px;box-shadow:0 25px 70px #11182755}
+.store-modal-close{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:50%;background:#f1f3f6;font-weight:900;z-index:2}
+.store-modal h2{margin:14px 0 4px;font-size:24px}
+.store-modal>p{margin:0 0 15px;color:#737d8b;font-size:13px}
+.fries-options{display:grid;gap:10px}
+.fries-option{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid #e5e8ee;border-radius:13px;padding:13px;background:#fafbfc}
+.fries-option strong,.fries-option small{display:block}
+.fries-option small{font-size:11px;color:#7c8592;margin-top:3px}
+.fries-option-action{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.fries-option-action b{font-size:14px}
+.fries-option-action button:disabled{opacity:.45;cursor:not-allowed}
+.store-product-img.photo{background-color:#eee}
+textarea{font:inherit;resize:vertical;min-height:90px}
