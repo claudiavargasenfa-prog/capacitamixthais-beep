@@ -93,3 +93,27 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .public-checkout{padding-bottom:25px}
 @media(max-width:900px){.store-grid{grid-template-columns:repeat(2,1fr)}.store-banner{height:230px}}
 @media(max-width:560px){.store-banner{height:185px}.store-public-main{padding:0 12px 28px}.store-hero{padding:22px 2px 14px}.store-hero h1{font-size:24px}.store-grid{grid-template-columns:repeat(2,1fr);gap:9px}.store-product{padding:8px;border-radius:12px}.store-product-img{height:125px}.store-product-img.photo{height:145px}.store-product strong{font-size:13px}.store-product small{font-size:9px}.store-product b{font-size:15px}.store-product button{padding:9px 6px;font-size:11px}.store-search{margin-bottom:14px}.store-search button{font-size:11px;padding:9px}.public-orders{grid-template-columns:1fr}.tracking-card{padding:20px 15px}.tracking-card h1{font-size:22px}.order-progress div{font-size:9px;padding:7px 2px}}
+
+/* Detalhe do produto — leitura completa e montagem do pedido */
+.store-product{cursor:pointer}
+.store-product:hover{transform:translateY(-1px);box-shadow:0 7px 22px #11182712}
+.product-detail-backdrop{align-items:flex-end}
+.product-detail-modal{width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:0;background:#fff}
+.product-detail-photo{width:100%;height:260px;border-radius:22px 22px 0 0;background:#f1f3f5;display:grid;place-items:center;font-size:75px}
+.product-detail-photo.photo{background-size:1100px auto;background-repeat:no-repeat}
+.product-detail-content{padding:22px 24px 26px}
+.product-detail-content h2{font-size:27px;margin:5px 0 3px}
+.product-detail-price{font-size:22px;font-weight:850;margin:5px 0 18px}
+.product-detail-description{border-top:1px solid #eceef1;border-bottom:1px solid #eceef1;padding:16px 0}
+.product-detail-description strong{font-size:13px}
+.product-detail-description p{font-size:14px;line-height:1.55;color:#5f6875;margin:7px 0 0}
+.product-detail-note{font-size:11px;color:#8a92a0;padding:13px 0 16px}
+@media(max-width:560px){
+.product-detail-modal{max-height:94vh}
+.product-detail-photo{height:210px}
+.product-detail-photo.photo{background-size:900px auto}
+.product-detail-content{padding:18px 16px 22px}
+.product-detail-content h2{font-size:22px}
+.product-detail-price{font-size:20px}
+.product-detail-description p{font-size:13px}
+}
