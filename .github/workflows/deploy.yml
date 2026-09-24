@@ -28,6 +28,8 @@ jobs:
         run: npm install
       - name: Gerar aplicação
         run: npm run build
+      - name: Preparar rotas diretas do site
+        run: cp dist/index.html dist/404.html
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Upload do site
