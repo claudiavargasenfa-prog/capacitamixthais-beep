@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" role="img" aria-label="Lapas Burguer">
+<defs>
+<linearGradient id="bg" x1="0" x2="1"><stop stop-color="#101318"/><stop offset=".5" stop-color="#252a31"/><stop offset="1" stop-color="#111419"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#f39a19" stop-opacity=".42"/><stop offset="1" stop-color="#f39a19" stop-opacity="0"/></radialGradient>
+<linearGradient id="bun" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#e7a13a"/><stop offset="1" stop-color="#a85b18"/></linearGradient>
+<linearGradient id="patty" x1="0" x2="1"><stop stop-color="#3d2015"/><stop offset=".5" stop-color="#6a3420"/><stop offset="1" stop-color="#32170f"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="12" flood-opacity=".42"/></filter>
+</defs>
+<rect width="1600" height="500" fill="url(#bg)"/>
+<circle cx="800" cy="250" r="380" fill="url(#glow)"/>
+<g opacity=".13" fill="#fff">
+<circle cx="110" cy="80" r="4"/><circle cx="180" cy="390" r="5"/><circle cx="1420" cy="100" r="4"/><circle cx="1510" cy="370" r="6"/><circle cx="300" cy="120" r="3"/><circle cx="1280" cy="400" r="4"/>
+</g>
+<!-- burger -->
+<g filter="url(#shadow)" transform="translate(450 45)">
+<path d="M80 155 C80 55 190 0 350 0 C510 0 620 55 620 155 Z" fill="url(#bun)"/>
+<g fill="#f6d58b"><ellipse cx="185" cy="75" rx="10" ry="5" transform="rotate(-20 185 75)"/><ellipse cx="285" cy="48" rx="10" ry="5" transform="rotate(20 285 48)"/><ellipse cx="400" cy="65" rx="10" ry="5" transform="rotate(-15 400 65)"/><ellipse cx="500" cy="90" rx="10" ry="5" transform="rotate(15 500 90)"/></g>
+<path d="M72 160 H628 L608 205 H92 Z" fill="#f4cf37"/>
+<path d="M80 205 H620 L590 248 H110 Z" fill="#4f9a3b"/>
+<path d="M92 248 H608 L575 292 H125 Z" fill="#e9c13d"/>
+<path d="M105 292 C150 268 190 320 235 294 C280 268 320 320 365 294 C410 268 450 320 495 294 C540 268 575 300 595 288 L575 344 H125 Z" fill="url(#patty)"/>
+<path d="M118 340 H582 L552 388 H148 Z" fill="#e9bd38"/>
+<path d="M135 388 C160 350 540 350 565 388 L545 430 H155 Z" fill="url(#bun)"/>
+</g>
+<!-- fries -->
+<g filter="url(#shadow)" transform="translate(105 125)">
+<path d="M35 100 L270 100 L235 360 L70 360 Z" fill="#d83c22"/>
+<path d="M65 112 L240 112 L218 340 L87 340 Z" fill="#e84a25"/>
+<g fill="#f6c44b">
+<rect x="48" y="15" width="28" height="120" rx="8" transform="rotate(-8 48 15)"/>
+<rect x="82" y="0" width="28" height="135" rx="8" transform="rotate(-2 82 0)"/>
+<rect x="118" y="8" width="28" height="135" rx="8" transform="rotate(5 118 8)"/>
+<rect x="154" y="2" width="28" height="140" rx="8" transform="rotate(8 154 2)"/>
+<rect x="190" y="15" width="28" height="125" rx="8" transform="rotate(13 190 15)"/>
+</g>
+</g>
+<!-- drink -->
+<g filter="url(#shadow)" transform="translate(1240 75)">
+<path d="M60 75 H245 L225 390 H80 Z" fill="#b72a1c"/>
+<path d="M82 90 H223 L210 365 H95 Z" fill="#e33c25"/>
+<ellipse cx="152" cy="75" rx="94" ry="20" fill="#e9e9e9"/>
+<rect x="137" y="0" width="20" height="70" rx="10" fill="#f2f2f2" transform="rotate(14 147 35)"/>
+<path d="M112 105 H192" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+<path d="M112 130 H192" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+</g>
+<!-- small sauce bowls -->
+<g opacity=".9">
+<ellipse cx="330" cy="445" rx="75" ry="22" fill="#d7d7d7"/><ellipse cx="330" cy="438" rx="58" ry="18" fill="#b82d1d"/>
+<ellipse cx="1260" cy="445" rx="75" ry="22" fill="#d7d7d7"/><ellipse cx="1260" cy="438" rx="58" ry="18" fill="#b82d1d"/>
+</g>
+</svg>
