@@ -192,7 +192,10 @@ const customerOrders=orders.filter(o=>o.business===business&&recentOrderIds.incl
 useEffect(()=>{save('mn-public-orders-'+business,recentOrderIds)},[business,recentOrderIds]);
 useEffect(()=>{if(!trackingId)return;const t=window.setInterval(()=>setOrders(v=>[...v]),1500);return()=>window.clearInterval(t)},[trackingId,setOrders]);
 
-const openStore=()=>{setView('loja');setCategory('');setSearchTerm('')};
+const clearTracking=()=>{window.history.replaceState({},'',window.location.pathname+'?loja='+business)};
+const openStore=()=>{clearTracking();setView('loja');setCategory('');setSearchTerm('')};
+const openSearch=()=>{clearTracking();setView('pesquisa')};
+const openOrders=()=>{setView('pedidos')};
 const openCategory=(c:string)=>{setCategory(c);setSearchTerm('');setView('loja')};
 const add=(id:number)=>setCart(v=>({...v,[id]:Math.min((v[id]||0)+1,items.find(p=>p.id===id)?.stock||1)}));
 const remove=(id:number)=>setCart(v=>{const n={...v};if((n[id]||0)<=1)delete n[id];else n[id]--;return n});
@@ -223,7 +226,7 @@ return <div className="store-app">
 {tracked.status==='pago_preparo'&&<p>Seu pedido já foi recebido e está sendo preparado.</p>}{tracked.status==='saiu_entrega'&&<p>A Lapas Burguer agradece a preferência.<br/><strong>Bom apetite!!! ❤️🍔</strong></p>}{tracked.status==='pronto_retirada'&&<p>Já pode retirar no local.<br/>A Lapas Burguer agradece a preferência.<br/><strong>Bom apetite!!! ❤️🍔</strong></p>}{tracked.status==='aguardando_pagamento'&&<p>Finalize o pagamento. Assim que o pagamento for confirmado, seu pedido entra em preparo.</p>}
 <div className="info-note"><strong>Total: {money(tracked.total)}</strong><br/>Pedido #{tracked.id}</div>
 <button className="primary full" onClick={()=>setView('pedidos')}>← Voltar para meus pedidos</button></div></main>
-<nav className="store-bottom-nav"><button onClick={openStore}>▣<span>Loja</span></button><button onClick={()=>setView('pesquisa')}>⌕<span>Pesquisa</span></button><button className="active" onClick={()=>setView('pedidos')}>▤<span>Pedidos</span></button></nav>
+<nav className="store-bottom-nav"><button onClick={openStore}>▣<span>Loja</span></button><button onClick={openSearch}>⌕<span>Pesquisa</span></button><button className="active" onClick={openOrders}>▤<span>Pedidos</span></button></nav>
 </div>
 }
 
