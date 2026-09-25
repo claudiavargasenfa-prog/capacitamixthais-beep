@@ -19,9 +19,9 @@
 .message-text{white-space:pre-line;line-height:1.6;font-size:14px;color:#4b554f;min-height:250px;margin-bottom:16px}
 .message-card .full{width:100%}
 
-.store-product-img.photo{background-image:url("./produtos/lapas/lapas-menu-sprite.jpg");background-repeat:no-repeat;background-size:300px 1054px;background-color:#f0f2f6;background-position:center 0;background-origin:border-box}
-.store-product-img.photo{height:210px;background-size:300px 1054px}
-.store-product-img.photo.fries-modal-photo{height:190px;border-radius:14px}
+.store-product-img.photo{background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#f0f2f6;background-origin:border-box}
+.store-product-img.photo{height:210px;background-size:cover;background-position:center}
+.store-product-img.photo.fries-modal-photo{height:190px;border-radius:14px;background-size:cover;background-position:center}
 .store-description{font-size:12px!important;line-height:1.45;color:#626b79!important;margin:6px 0!important;min-height:52px}
 .store-product>div:nth-child(2){display:flex;flex-direction:column}
 .store-product>div:nth-child(2) small{margin-top:auto}
@@ -43,7 +43,7 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 /* Catálogo público Lapas — visual inspirado em cardápios modernos, com identidade própria */
 .store-app{padding-bottom:78px}
 .store-banner{width:100%;height:270px;overflow:hidden;background:#111827}
-.store-banner img{width:100%;height:100%;display:block;object-fit:cover}
+.store-banner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 52%;filter:saturate(1.05) contrast(1.03)}
 .store-public-main{max-width:1120px;margin:0 auto;padding:0 18px 42px}
 .store-hero{padding:28px 2px 18px}
 .store-hero.compact{padding-top:28px}
@@ -100,7 +100,7 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .product-detail-backdrop{align-items:flex-end}
 .product-detail-modal{width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:0;background:#fff}
 .product-detail-photo{width:100%;height:260px;border-radius:22px 22px 0 0;background:#f1f3f5;display:grid;place-items:center;font-size:75px}
-.product-detail-photo.photo{background-size:1100px auto;background-repeat:no-repeat}
+.product-detail-photo.photo{background-size:cover;background-repeat:no-repeat;background-position:center}
 .product-detail-content{padding:22px 24px 26px}
 .product-detail-content h2{font-size:27px;margin:5px 0 3px}
 .product-detail-price{font-size:22px;font-weight:850;margin:5px 0 18px}
@@ -111,7 +111,7 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 @media(max-width:560px){
 .product-detail-modal{max-height:94vh}
 .product-detail-photo{height:210px}
-.product-detail-photo.photo{background-size:900px auto}
+.product-detail-photo.photo{background-size:cover;background-position:center}
 .product-detail-content{padding:18px 16px 22px}
 .product-detail-content h2{font-size:22px}
 .product-detail-price{font-size:20px}
