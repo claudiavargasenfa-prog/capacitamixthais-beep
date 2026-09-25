@@ -268,7 +268,7 @@ return <div className="store-app">
 
 return <div className="store-app">
 <header className="store-head"><div className="store-brand"><img className="store-logo" src={business==='lapas'?'./logos/lapas-burguer.svg':'./logos/mercadinho-da-familia.svg'} alt="Logo"/><div><strong>{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</strong><small>{business==='lapas'?'Faça seu pedido':'Compre o que precisa'}</small></div></div><button className="cart-button" onClick={()=>setView('checkout')}>🛒 Carrinho <b>{selected.reduce((s,p)=>s+cart[p.id],0)}</b></button></header>
-{business==='lapas'&&<div className="store-banner"><img src={bannerUrl} alt="Lapas Burguer"/></div>}
+{business==='lapas'&&<div className="store-banner"><img className="store-banner-photo" src={bannerUrl} alt="Lapas Burguer"/><img className="store-banner-logo" src="./logos/lapas-burguer.svg" alt="Logo Lapas Burguer"/></div>}
 {view==='loja'&&<main className="store-public-main">
 <section className="store-hero"><div><span className="eyebrow">{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</span><h1>{business==='lapas'?'Seu lanche do seu jeito.':'Tudo que você precisa, pertinho de você.'}</h1><p>{business==='lapas'?'Escolha, monte seu pedido e acompanhe tudo por aqui.':'Escolha os produtos, monte seu pedido e acompanhe tudo por aqui.'}</p></div></section>
 <div className="store-search"><span>⌕</span><input value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} placeholder="Pesquisar produtos..."/><button onClick={()=>setView('pesquisa')}>Categorias</button></div>
