@@ -29,7 +29,11 @@ jobs:
       - name: Gerar aplicação
         run: npm run build
       - name: Preparar rotas diretas do site
-        run: cp dist/index.html dist/404.html
+        run: |
+          cp dist/index.html dist/404.html
+          mkdir -p dist/lapasburguer dist/mercadodafamilia
+          cp dist/index.html dist/lapasburguer/index.html
+          cp dist/index.html dist/mercadodafamilia/index.html
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Upload do site
