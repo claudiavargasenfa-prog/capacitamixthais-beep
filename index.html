@@ -9,6 +9,31 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (() => {
+        const base = location.pathname.startsWith('/capacitamixthais-beep') ? '/capacitamixthais-beep' : '';
+        const map = {
+          '35731449': base + '/produtos/lapas/x-burger.svg',
+          '3915915': base + '/produtos/lapas/x-salada.svg',
+          '19247571': base + '/produtos/lapas/x-bacon.svg',
+          '2874989': base + '/produtos/lapas/x-tudo.svg',
+          '8165289': base + '/produtos/lapas/batata-frita.svg',
+          '844875': base + '/produtos/lapas/refrigerante-lata.svg'
+        };
+        const patchImages = () => {
+          document.querySelectorAll('img').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            for (const key in map) if (src.includes(key)) img.setAttribute('src', map[key]);
+          });
+          document.querySelectorAll('[style]').forEach(el => {
+            const bg = el.style.backgroundImage || '';
+            for (const key in map) if (bg.includes(key)) el.style.backgroundImage = `url("${map[key]}")`;
+          });
+        };
+        new MutationObserver(patchImages).observe(document.documentElement, {subtree:true, childList:true, attributes:true, attributeFilter:['style','src']});
+        patchImages();
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
