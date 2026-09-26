@@ -228,12 +228,12 @@ alert('Pedido criado! Agora faça o pagamento. O pedido só será liberado para 
 
 const assetRoot=window.location.pathname.startsWith('/capacitamixthais-beep')?'/capacitamixthais-beep':'';
 const photoUrls:Record<string,string>={
-'X-Burger':'https://images.pexels.com/photos/35731449/pexels-photo-35731449.jpeg?cs=srgb&dl=pexels-aperture-35731449.jpg&fm=jpg',
-'X-Salada':'https://images.pexels.com/photos/3915915/pexels-photo-3915915.jpeg?cs=srgb&dl=pexels-horizon-content-2100060-3915915.jpg&fm=jpg',
-'X-Bacon':'https://images.pexels.com/photos/19247571/pexels-photo-19247571.jpeg?cs=srgb&dl=pexels-jonathanborba-19247571.jpg&fm=jpg',
-'X-Tudo':'https://images.pexels.com/photos/2874989/pexels-photo-2874989.jpeg?cs=srgb&dl=pexels-tioroshi-2874989.jpg&fm=jpg',
-'Batata Frita':'https://images.pexels.com/photos/8165289/pexels-photo-8165289.jpeg?cs=srgb&dl=pexels-mart-production-8165289.jpg&fm=jpg',
-'Refrigerante Lata':'https://images.pexels.com/photos/844875/pexels-photo-844875.jpeg?cs=srgb&dl=pexels-atomlaborblog-844875.jpg&fm=jpg'
+'X-Burger':'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=88',
+'X-Salada':'https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&w=1200&q=88',
+'X-Bacon':'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=88',
+'X-Tudo':'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=1200&q=88',
+'Batata Frita':'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=1200&q=88',
+'Refrigerante Lata':'https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=1200&q=88'
 };
 const bannerUrl=photoUrls['X-Bacon'];
 const photoClass=(p:Product)=>business==='lapas'&&photoUrls[p.name]?'store-product-img photo':p.image?'store-product-img custom-photo':'store-product-img';
