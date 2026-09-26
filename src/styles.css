@@ -252,3 +252,22 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .store-editor-modal{max-width:520px}
 .store-editor-modal label{display:block;margin:13px 0;font-weight:700}
 .store-editor-modal input,.store-editor-modal textarea{width:100%;margin-top:6px;box-sizing:border-box}
+
+/* Interação premium dos botões */
+.store-product button{
+  transition:background .18s ease,transform .12s ease,box-shadow .18s ease;
+}
+.store-product button:hover{
+  background:#d9a51a !important;
+  color:#1b1205 !important;
+  box-shadow:0 4px 14px rgba(217,165,26,.38);
+}
+.store-product button:active{
+  animation:lapasButtonFlash .28s ease;
+}
+@keyframes lapasButtonFlash{
+  0%{opacity:1;transform:scale(1)}
+  35%{opacity:.28;transform:scale(.97)}
+  70%{opacity:1;transform:scale(1.01)}
+  100%{opacity:1;transform:scale(1)}
+}
