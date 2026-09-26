@@ -143,8 +143,102 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .order-detail-line{display:block;margin-top:4px;color:#56616d;font-size:12px;line-height:1.4}
 .product-observation{width:100%;min-height:96px;resize:vertical;border:1px solid #dfe3e8;border-radius:10px;padding:10px;font:inherit;font-size:13px;box-sizing:border-box;background:#fff}
 
-/* Lapas Burguer — banner fotográfico */
-.store-banner{position:relative;overflow:hidden;background:#111;}
-.store-banner .store-banner-photo{width:100%;height:100%;display:block;object-fit:cover;object-position:center 52%;filter:saturate(1.05) contrast(1.03);}
-.store-banner .store-banner-logo{position:absolute;left:7%;top:50%;transform:translateY(-50%);width:250px;height:250px;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45));}
-@media (max-width:700px){.store-banner .store-banner-logo{left:4%;width:145px;height:145px}.store-banner .store-banner-photo{object-position:center 52%;}}
+/* Lapas Burguer — catálogo final */
+.store-banner{
+  position:relative;
+  width:100%;
+  height:220px;
+  overflow:hidden;
+  background:#160c08;
+  border-bottom:4px solid #f4b51b;
+}
+.store-banner .store-banner-photo{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center 58%;
+  filter:saturate(1.08) contrast(1.04) brightness(.72);
+}
+.store-banner:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(10,6,4,.82) 0%,rgba(10,6,4,.32) 34%,rgba(10,6,4,.05) 65%,rgba(10,6,4,.28) 100%);
+  pointer-events:none;
+}
+.store-banner .store-banner-logo{
+  position:absolute;
+  z-index:2;
+  left:max(24px,calc((100vw - 1120px)/2));
+  top:50%;
+  transform:translateY(-50%);
+  width:155px;
+  height:155px;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.6));
+}
+.store-public-main{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 22px 45px;
+}
+.store-hero{
+  padding:25px 0 16px;
+}
+.store-hero h1{
+  font-size:32px;
+  margin:5px 0 7px;
+  letter-spacing:-.035em;
+  color:#17120f;
+}
+.store-hero p{font-size:13px;color:#707780;margin:0}
+.store-search{
+  margin-bottom:18px;
+  box-shadow:0 5px 22px rgba(17,24,39,.08);
+}
+.store-grid{
+  width:100%;
+  padding:0 0 35px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.store-product{
+  min-width:0;
+  border-radius:17px;
+  padding:12px;
+  box-shadow:0 6px 24px rgba(17,24,39,.08);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.store-product-img.photo{
+  height:245px;
+  border-radius:13px;
+  background-size:cover;
+  background-position:center;
+}
+.store-product strong{font-size:17px}
+.store-product b{font-size:19px;color:#201814}
+.store-product button{
+  background:#3f7f39;
+  border-radius:10px;
+  min-height:40px;
+}
+.store-description{
+  min-height:42px;
+}
+@media(max-width:900px){
+  .store-banner{height:190px}
+  .store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .store-banner .store-banner-logo{width:125px;height:125px}
+}
+@media(max-width:560px){
+  .store-banner{height:165px}
+  .store-banner .store-banner-logo{left:14px;width:105px;height:105px}
+  .store-public-main{padding:0 12px 30px}
+  .store-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .store-product{padding:8px;border-radius:13px}
+  .store-product-img.photo{height:145px}
+  .store-product strong{font-size:13px}
+  .store-product b{font-size:15px}
+}
