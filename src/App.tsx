@@ -263,7 +263,7 @@ const photoUrls:Record<string,string>={
 'X-Bacon':'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=88',
 'X-Tudo':'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=1200&q=88',
 'Batata Frita':'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=1200&q=88',
-'Refrigerante Lata':'https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=1200&q=88'
+'Refrigerante Lata':'/assets/lapas/refrigerante-coca.jpg'
 };
 const bannerUrl=customBanner||photoUrls['X-Bacon'];
 const photoClass=(p:Product)=>business==='lapas'&&photoUrls[p.name]?'store-product-img photo':p.image?'store-product-img custom-photo':'store-product-img';
