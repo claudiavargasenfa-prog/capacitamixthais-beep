@@ -96,7 +96,7 @@ const load=<T,>(key:string,fallback:T):T=>{try{return JSON.parse(localStorage.ge
 
 function App(){
 const[page,setPage]=useState<Page>('inicio'),[business,setBusiness]=useState<Business>('all')
-const[products,setProducts]=useState<Product[]>(()=>{const saved=load<Product[]>('mn-products',initialProducts);const savedById=new Map(saved.map(p=>[p.id,p]));const merged=initialProducts.map(def=>({...def,...savedById.get(def.id)}));const extras=saved.filter(p=>!initialProducts.some(d=>d.id===p.id));return [...merged,...extras].map(p=>{const defaults=initialProducts.find(x=>x.id===p.id);return {...p,type:p.type||p.category||'',size:p.size||p.unit||'',temperature:p.temperature||'',active:p.price>0 ? p.active!==false : false,description:p.description||defaults?.description||''}})})
+const[products,setProducts]=useState<Product[]>(()=>{const saved=load<Product[]>('mn-products',initialProducts);const savedById=new Map(saved.map(p=>[p.id,p]));const merged=initialProducts.map(def=>({...def,...savedById.get(def.id)}));const extras=saved.filter(p=>!initialProducts.some(d=>d.id===p.id));return [...merged,...extras].filter(p=>p.id!==6&&!/pepsi|refrigerante lata/i.test(p.name)).map(p=>{const defaults=initialProducts.find(x=>x.id===p.id);return {...p,type:p.type||p.category||'',size:p.size||p.unit||'',temperature:p.temperature||'',active:p.price>0 ? p.active!==false : false,description:p.description||defaults?.description||''}})})
 const[sales,setSales]=useState<Sale[]>(()=>load('mn-sales',initialSales))
 const[purchases,setPurchases]=useState<Purchase[]>(()=>load('mn-purchases',[]))
 const[customers,setCustomers]=useState<Customer[]>(()=>load('mn-customers',[]))
