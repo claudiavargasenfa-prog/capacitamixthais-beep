@@ -33,6 +33,7 @@ jobs:
           cp dist/index.html dist/404.html
           mkdir -p dist/lapasburguer dist/mercadodafamilia
           cp dist/index.html dist/lapasburguer/index.html
+          cp -R dist/assets dist/logos dist/produtos dist/lapasburguer/
           cp dist/index.html dist/mercadodafamilia/index.html
       - name: Configurar Pages
         uses: actions/configure-pages@v5
