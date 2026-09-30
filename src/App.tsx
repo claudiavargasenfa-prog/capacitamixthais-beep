@@ -276,11 +276,11 @@ alert('Pedido criado! Agora faça o pagamento. O pedido só será liberado para 
 
 const assetRoot='/lapasburguer';
 const photoUrls:Record<string,string>={
-'X-Burger':'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=88',
-'X-Salada':'https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&w=1200&q=88',
-'X-Bacon':'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=88',
-'X-Tudo':'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=1200&q=88',
-'Batata Frita':'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=1200&q=88',
+'X-Burger':assetRoot+'/produtos/lapas/x-burger.svg',
+'X-Salada':assetRoot+'/produtos/lapas/x-salada.svg',
+'X-Bacon':assetRoot+'/produtos/lapas/x-bacon.svg',
+'X-Tudo':assetRoot+'/produtos/lapas/x-tudo.svg',
+'Batata Frita':assetRoot+'/produtos/lapas/batata-frita.svg',
 'Refrigerante Lata':assetRoot+'/assets/lapas/refrigerante-coca.jpg'
 };
 const bannerUrl=customBanner||assetRoot+'/assets/lapas/lapas-banner.svg';
