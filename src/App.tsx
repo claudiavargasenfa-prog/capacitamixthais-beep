@@ -276,6 +276,13 @@ alert('Pedido criado! Agora faça o pagamento. O pedido só será liberado para 
 
 const assetRoot='/lapasburguer';
 const photoUrls:Record<string,string>={
+'X-Burger':'https://images.pexels.com/photos/35731449/pexels-photo-35731449.jpeg?cs=srgb&dl=pexels-aperture-35731449.jpg&fm=jpg',
+'X-Salada':'https://images.pexels.com/photos/3915915/pexels-photo-3915915.jpeg?cs=srgb&dl=pexels-horizon-content-2100060-3915915.jpg&fm=jpg',
+'X-Bacon':'https://images.pexels.com/photos/19247571/pexels-photo-19247571.jpeg?cs=srgb&dl=pexels-jonathanborba-19247571.jpg&fm=jpg',
+'X-Tudo':'https://images.pexels.com/photos/2874989/pexels-photo-2874989.jpeg?cs=srgb&dl=pexels-tioroshi-2874989.jpg&fm=jpg',
+'Batata Frita':'https://images.pexels.com/photos/8165289/pexels-photo-8165289.jpeg?cs=srgb&dl=pexels-mart-production-8165289.jpg&fm=jpg'
+};
+const localPhotoUrls:Record<string,string>={
 'X-Burger':assetRoot+'/produtos/lapas/x-burger.svg',
 'X-Salada':assetRoot+'/produtos/lapas/x-salada.svg',
 'X-Bacon':assetRoot+'/produtos/lapas/x-bacon.svg',
@@ -284,8 +291,8 @@ const photoUrls:Record<string,string>={
 'Refrigerante Lata':assetRoot+'/assets/lapas/refrigerante-coca.jpg'
 };
 const bannerUrl=customBanner||assetRoot+'/assets/lapas/lapas-banner.svg';
-const photoClass=(p:Product)=>business==='lapas'&&photoUrls[p.name]?'store-product-img photo':p.image?'store-product-img custom-photo':'store-product-img';
-const productImageStyle=(p:Product)=>{const url=customImages[String(p.id)]||photoUrls[p.name]||(p.image?assetRoot+p.image:'');return url?{backgroundImage:'url('+url+')'}:{}};
+const photoClass=(p:Product)=>business==='lapas'&&(photoUrls[p.name]||localPhotoUrls[p.name])?'store-product-img photo':p.image?'store-product-img custom-photo':'store-product-img';
+const productImageStyle=(p:Product)=>{const custom=customImages[String(p.id)],remote=photoUrls[p.name],local=localPhotoUrls[p.name]||(p.image?assetRoot+p.image:'');const urls=custom?[custom]:remote&&local?[remote,local]:[remote||local].filter(Boolean);return urls.length?{backgroundImage:urls.map(url=>'url("'+url+'")').join(',')}:{}};
 const addOrChoose=(p:Product)=>p.name==='Batata Frita'?setFriesOpen(true):add(p.id);
 const openProduct=(p:Product)=>{if(p.name==='Batata Frita'){setFriesOpen(true);return}setRemovedIngredients([]);setChosenAdditions([]);setDetailProduct(p)};
 const baseIngredients=(p:Product)=>{const listed=p.description?.split(',').map(x=>x.trim()).filter(x=>x.length>1)||[];if(p.category==='Lanches'){const extras=['cebola','molho especial','salada'];for(const x of extras)if(!listed.some(v=>v.toLowerCase()===x))listed.push(x)}return listed.slice(0,15)};
