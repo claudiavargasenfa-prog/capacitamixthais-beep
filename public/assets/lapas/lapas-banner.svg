@@ -8,9 +8,9 @@
 <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity=".55"/></filter>
 </defs>
 <rect width="1600" height="450" fill="url(#bg)"/>
-<image href="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&amp;fit=crop&amp;w=900&amp;q=88" x="405" y="35" width="730" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#burger)" filter="url(#shadow)"/>
-<image href="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&amp;fit=crop&amp;w=700&amp;q=88" x="970" y="75" width="370" height="340" preserveAspectRatio="xMidYMid slice" clip-path="url(#fries)" filter="url(#shadow)"/>
-<image href="https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&amp;fit=crop&amp;w=500&amp;q=88" x="1285" y="30" width="270" height="390" preserveAspectRatio="xMidYMid slice" clip-path="url(#coke)" filter="url(#shadow)"/>
+<image href="/lapasburguer/produtos/lapas/x-burger.svg" x="405" y="35" width="730" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#burger)" filter="url(#shadow)"/>
+<image href="/lapasburguer/produtos/lapas/batata-frita.svg" x="970" y="75" width="370" height="340" preserveAspectRatio="xMidYMid slice" clip-path="url(#fries)" filter="url(#shadow)"/>
+<image href="/lapasburguer/produtos/lapas/refrigerante-lata.svg" x="1285" y="30" width="270" height="390" preserveAspectRatio="xMidYMid slice" clip-path="url(#coke)" filter="url(#shadow)"/>
 <rect width="1600" height="450" fill="url(#shade)"/>
 <circle cx="185" cy="130" r="82" fill="#111" stroke="#f4b51b" stroke-width="7"/>
 <path d="M120 135c20-52 111-52 131 0" fill="#f4b51b"/>
