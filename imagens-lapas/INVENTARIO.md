@@ -35,3 +35,8 @@ As versões otimizadas que o site carrega ficam em `public/produtos/lapas/imagen
 - Não há uma foto exclusiva de X-Salada; por enquanto ele compartilha a foto do X-Burger.
 - Não há fotos próprias para todas as marcas e tamanhos de refrigerante. A foto disponível de Coca-Cola é associada aos itens com Coca-Cola no nome.
 - Antes de enviar novas fotos, confira esta lista e acrescente cada arquivo recebido aqui e sua associação. O app pode usar uma única versão otimizada para vários itens relacionados quando não há foto individual.
+
+
+## Atualização do catálogo
+
+A foto compactada `pastel-doces-salgados.jpg` mostra os pastéis doces e salgados e agora é aplicada aos produtos da categoria `Pastéis`. As oito imagens `lanche-na-caixa-1.webp` a `lanche-na-caixa-8.webp` estão associadas aos oito produtos Combo na Caixa cadastrados no app. Eles foram criados sem preço e inativos até a confirmação dos valores; por isso ainda não aparecem para clientes.
