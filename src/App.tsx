@@ -279,12 +279,12 @@ alert('Pedido criado! Agora faça o pagamento. O pedido só será liberado para 
 
 const assetRoot='/lapasburguer';
 const photoUrls:Record<string,string>={
-'X-Burger':assetRoot+'/produtos/lapas/imagens/x-burger.png',
-'X-Salada':assetRoot+'/produtos/lapas/imagens/x-burger.png',
-'X-Bacon':assetRoot+'/produtos/lapas/imagens/x-bacon.png',
-'X-Tudo':assetRoot+'/produtos/lapas/imagens/duplo-cheddar.png',
-'Batata Frita':assetRoot+'/produtos/lapas/imagens/batata-cheddar-bacon.png',
-'Guaracamp':assetRoot+'/produtos/lapas/imagens/guaracamp.png'
+'X-Burger':assetRoot+'/produtos/lapas/imagens/x-burger.webp',
+'X-Salada':assetRoot+'/produtos/lapas/imagens/x-burger.webp',
+'X-Bacon':assetRoot+'/produtos/lapas/imagens/x-bacon.webp',
+'X-Tudo':assetRoot+'/produtos/lapas/imagens/duplo-cheddar.webp',
+'Batata Frita':assetRoot+'/produtos/lapas/imagens/batata-cheddar-bacon.webp',
+'Guaracamp':assetRoot+'/produtos/lapas/imagens/guaracamp.webp'
 };
 const localPhotoUrls:Record<string,string>={
 'X-Burger':assetRoot+'/produtos/lapas/x-burger.svg',
@@ -294,7 +294,7 @@ const localPhotoUrls:Record<string,string>={
 'Batata Frita':assetRoot+'/produtos/lapas/batata-frita.svg',
 'Refrigerante Lata':assetRoot+'/assets/lapas/refrigerante-coca.jpg'
 };
-const bannerUrl=assetRoot+'/assets/lapas/banner-oficial.png';
+const bannerUrl=assetRoot+'/assets/lapas/banner-oficial.webp';
 const photoClass=(p:Product)=>business==='lapas'&&(photoUrls[p.name]||localPhotoUrls[p.name])?'store-product-img photo':p.image?'store-product-img custom-photo':'store-product-img';
 const productImageStyle=(p:Product)=>{const custom=customImages[String(p.id)],remote=photoUrls[p.name],local=localPhotoUrls[p.name]||(p.image?assetRoot+p.image:'');const urls=custom?[custom]:remote&&local?[remote,local]:[remote||local].filter(Boolean);return urls.length?{backgroundImage:urls.map(url=>'url("'+url+'")').join(',')}:{}};
 const addOrChoose=(p:Product)=>p.name==='Batata Frita'?setFriesOpen(true):add(p.id);
@@ -315,8 +315,8 @@ const addCustomized=()=>{
 
 if(tracked){
 return <div className="store-app">
-<header className="store-head"><div className="store-brand"><img className="store-logo" src={business==='lapas'?assetRoot+'/logos/logotipo.jpg.png':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/><div><strong>{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</strong><small>Pedido #{tracked.id}</small></div></div><button className="cart-button" onClick={()=>setView('checkout')}>🛒 Carrinho <b>{selected.reduce((s,p)=>s+cart[p.id],0)}</b></button></header>
-<main className="tracking-screen"><div className="tracking-card"><div className="tracking-logo"><img src={business==='lapas'?assetRoot+'/logos/logotipo.jpg.png':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/></div><span className="eyebrow">ACOMPANHAMENTO</span><h1>{tracked.status==='pago_preparo'?'👨‍🍳 Seu pedido está em preparo':tracked.status==='saiu_entrega'?'🛵 Seu pedido saiu para entrega!':tracked.status==='pronto_retirada'?'🟢 Seu pedido está pronto!':tracked.status==='entregue'?'✅ Pedido entregue':'🟡 Aguardando pagamento'}</h1>
+<header className="store-head"><div className="store-brand"><img className="store-logo" src={business==='lapas'?assetRoot+'/logos/logotipo.webp':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/><div><strong>{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</strong><small>Pedido #{tracked.id}</small></div></div><button className="cart-button" onClick={()=>setView('checkout')}>🛒 Carrinho <b>{selected.reduce((s,p)=>s+cart[p.id],0)}</b></button></header>
+<main className="tracking-screen"><div className="tracking-card"><div className="tracking-logo"><img src={business==='lapas'?assetRoot+'/logos/logotipo.webp':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/></div><span className="eyebrow">ACOMPANHAMENTO</span><h1>{tracked.status==='pago_preparo'?'👨‍🍳 Seu pedido está em preparo':tracked.status==='saiu_entrega'?'🛵 Seu pedido saiu para entrega!':tracked.status==='pronto_retirada'?'🟢 Seu pedido está pronto!':tracked.status==='entregue'?'✅ Pedido entregue':'🟡 Aguardando pagamento'}</h1>
 <div className="order-progress"><div className={tracked.status==='aguardando_pagamento'?'active':''}>Pagamento</div><div className={tracked.status==='pago_preparo'?'active':''}>Preparo</div><div className={(tracked.status==='saiu_entrega'||tracked.status==='pronto_retirada'||tracked.status==='entregue')?'active':''}>{tracked.delivery==='entrega'?'Entrega':'Retirada'}</div><div className={tracked.status==='entregue'?'active':''}>Concluído</div></div>
 {tracked.status==='pago_preparo'&&<p>Seu pedido já foi recebido e está sendo preparado.</p>}{tracked.status==='saiu_entrega'&&<p>A Lapas Burguer agradece a preferência.<br/><strong>Bom apetite!!! ❤️🍔</strong></p>}{tracked.status==='pronto_retirada'&&<p>Já pode retirar no local.<br/>A Lapas Burguer agradece a preferência.<br/><strong>Bom apetite!!! ❤️🍔</strong></p>}{tracked.status==='aguardando_pagamento'&&<p>Finalize o pagamento. Assim que o pagamento for confirmado, seu pedido entra em preparo.</p>}
 <div className="info-note"><strong>Total: {money(tracked.total)}</strong><br/>Pedido #{tracked.id}</div>
@@ -326,8 +326,8 @@ return <div className="store-app">
 }
 
 return <div className="store-app">
-<header className="store-head"><div className="store-brand"><img className="store-logo" src={business==='lapas'?assetRoot+'/logos/logotipo.jpg.png':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/><div><strong>{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</strong><small>{business==='lapas'?'Faça seu pedido':'Compre o que precisa'}</small></div></div><button className="cart-button" onClick={()=>setView('checkout')}>🛒 Carrinho <b>{selected.reduce((s,p)=>s+cart[p.id],0)}</b></button></header>
-{business==='lapas'&&<div className="store-banner lapas-banner"><img className="store-banner-photo" src={bannerUrl} alt="Banner Lapa's Burguer"/><div className="lapas-banner-info"><img src={assetRoot+'/logos/logotipo.jpg.png'} alt="Logo Lapa's Burguer"/><div className="lapas-banner-copy"><h2>Lapa's Burguer</h2><p>📍 Estrada Ponta Porã, 1 - Amapá, Duque de Caxias - RJ, 25235-269</p><p>Pedido mínimo: R$ 3,00</p><div className={'lapas-open-status '+(lapasIsOpen?'open':'closed')}><span>{lapasIsOpen?'● LOJA ABERTA':'● LOJA FECHADA'}</span></div><div className="lapas-hours"><strong>Horários de funcionamento</strong><span>Seg, Ter, Qui, Sex, Sáb e Dom<br/>18:30 às 00:30</span></div></div></div></div>}
+<header className="store-head"><div className="store-brand"><img className="store-logo" src={business==='lapas'?assetRoot+'/logos/logotipo.webp':assetRoot+'/logos/mercadinho-da-familia.svg'} alt="Logo"/><div><strong>{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</strong><small>{business==='lapas'?'Faça seu pedido':'Compre o que precisa'}</small></div></div><button className="cart-button" onClick={()=>setView('checkout')}>🛒 Carrinho <b>{selected.reduce((s,p)=>s+cart[p.id],0)}</b></button></header>
+{business==='lapas'&&<div className="store-banner lapas-banner"><img className="store-banner-photo" src={bannerUrl} alt="Banner Lapa's Burguer"/><div className="lapas-banner-info"><img src={assetRoot+'/logos/logotipo.webp'} alt="Logo Lapa's Burguer"/><div className="lapas-banner-copy"><h2>Lapa's Burguer</h2><p>📍 Estrada Ponta Porã, 1 - Amapá, Duque de Caxias - RJ, 25235-269</p><p>Pedido mínimo: R$ 3,00</p><div className={'lapas-open-status '+(lapasIsOpen?'open':'closed')}><span>{lapasIsOpen?'● LOJA ABERTA':'● LOJA FECHADA'}</span></div><div className="lapas-hours"><strong>Horários de funcionamento</strong><span>Seg, Ter, Qui, Sex, Sáb e Dom<br/>18:30 às 00:30</span></div></div></div></div>}
 {view==='loja'&&<main className="store-public-main">
 <section className="store-hero"><div><span className="eyebrow">{business==='lapas'?'LAPAS BURGUER':'MERCADINHO DA FAMÍLIA'}</span><h1>{business==='lapas'?'Seu lanche do seu jeito.':'Tudo que você precisa, pertinho de você.'}</h1><p>{business==='lapas'?'Escolha, monte seu pedido e acompanhe tudo por aqui.':'Escolha os produtos, monte seu pedido e acompanhe tudo por aqui.'}</p></div></section>
 <div className="store-search"><span>⌕</span><input value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} placeholder="Pesquisar produtos..."/><button onClick={()=>setView('pesquisa')}>Categorias</button></div>
