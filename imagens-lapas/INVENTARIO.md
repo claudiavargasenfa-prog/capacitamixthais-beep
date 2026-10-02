@@ -31,7 +31,7 @@ As versões otimizadas que o site carrega ficam em `public/produtos/lapas/imagen
 
 ## Fotos que ainda faltam
 
-- Não há foto real de pastel no repositório; a categoria ainda usa a ilustração genérica.
+- A foto real `pastel-doces-salgados.jpg` é a capa dos produtos de Pastéis; novas fotos poderão ser acrescentadas quando forem enviadas.
 - Não há uma foto exclusiva de X-Salada; por enquanto ele compartilha a foto do X-Burger.
 - Não há fotos próprias para todas as marcas e tamanhos de refrigerante. A foto disponível de Coca-Cola é associada aos itens com Coca-Cola no nome.
 - Antes de enviar novas fotos, confira esta lista e acrescente cada arquivo recebido aqui e sua associação. O app pode usar uma única versão otimizada para vários itens relacionados quando não há foto individual.
@@ -40,3 +40,21 @@ As versões otimizadas que o site carrega ficam em `public/produtos/lapas/imagen
 ## Atualização do catálogo
 
 A foto compactada `pastel-doces-salgados.jpg` mostra os pastéis doces e salgados e agora é aplicada aos produtos da categoria `Pastéis`. As oito imagens `lanche-na-caixa-1.webp` a `lanche-na-caixa-8.webp` estão associadas aos oito produtos Combo na Caixa cadastrados no app. Eles foram criados sem preço e inativos até a confirmação dos valores; por isso ainda não aparecem para clientes.
+
+
+## Combos na Caixa incluídos na loja
+
+Os oito produtos da categoria `Lanches na Caixa` estão cadastrados com suas respectivas imagens, descrições e preços:
+
+| Lanches | Preço |
+|---:|---:|
+| 1 | R$ 48,00 |
+| 2 | R$ 55,00 |
+| 3 | R$ 64,00 |
+| 4 | R$ 72,00 |
+| 5 | R$ 80,00 |
+| 6 | R$ 92,00 |
+| 7 | R$ 99,00 |
+| 8 | R$ 109,00 |
+
+O estoque inicial está em 20 unidades por combo, seguindo o valor padrão dos demais produtos cadastrados. Ajuste no painel se o estoque real for diferente.
