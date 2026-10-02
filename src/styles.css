@@ -309,3 +309,9 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .product-detail-photo{height:auto;aspect-ratio:2.35/1;min-height:210px;max-height:52dvh;box-sizing:border-box;background-size:contain!important;background-position:center;background-repeat:no-repeat;background-color:#17120f}
 .product-detail-photo.photo{background-size:contain!important}
 @media(max-width:680px){.product-detail-modal{width:100%}.product-detail-photo{aspect-ratio:2.1/1;min-height:190px;max-height:40dvh}}
+
+
+/* Fotos de produtos em área quadrada, mantendo a imagem inteira */
+.store-product .store-image-wrap,.store-product-img.photo{width:100%;height:auto;min-height:0;aspect-ratio:1/1;box-sizing:border-box;background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#f1f3f5}
+.product-detail-modal{width:min(760px,calc(100vw - 24px))}
+.product-detail-photo,.product-detail-photo.photo{width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:1/1;box-sizing:border-box;background-size:contain!important;background-position:center;background-repeat:no-repeat;background-color:#f1f3f5}
