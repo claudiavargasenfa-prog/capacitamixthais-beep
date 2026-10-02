@@ -302,3 +302,10 @@ textarea{font:inherit;resize:vertical;min-height:90px;display:block;width:100%;m
 .category-visibility-grid input{width:17px;height:17px;accent-color:#43853b}
 @media(max-width:680px){.store-banner.lapas-banner{height:275px;margin-bottom:135px}.lapas-banner-info{bottom:-122px;width:calc(100% - 24px);padding:14px;gap:12px;border-radius:16px}.lapas-banner-info>img{width:74px;height:74px;flex-basis:74px}.lapas-banner-copy{grid-template-columns:1fr auto;column-gap:8px}.lapas-banner-copy h2{font-size:18px}.lapas-banner-copy p{font-size:12px}.lapas-open-status{font-size:10px;padding:7px 8px}.lapas-hours{margin-top:8px;font-size:12px}.lapas-hours strong{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.lapas-open-status{animation:none}}
+
+
+/* Detalhe do produto: imagem completa, sem recorte */
+.product-detail-modal{width:min(940px,calc(100vw - 24px))}
+.product-detail-photo{height:auto;aspect-ratio:2.35/1;min-height:210px;max-height:52dvh;box-sizing:border-box;background-size:contain!important;background-position:center;background-repeat:no-repeat;background-color:#17120f}
+.product-detail-photo.photo{background-size:contain!important}
+@media(max-width:680px){.product-detail-modal{width:100%}.product-detail-photo{aspect-ratio:2.1/1;min-height:190px;max-height:40dvh}}
